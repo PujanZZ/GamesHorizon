@@ -1,0 +1,9 @@
+.custom-mat-button {
+color: #2C3333;
+transition: transform 0.1s ease-in;
+}
+
+.custom-mat-button:hover {
+transform: scale(1.35);
+}
+  

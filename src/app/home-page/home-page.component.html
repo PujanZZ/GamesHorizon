@@ -1,0 +1,37 @@
+<div
+  style="padding: 10px; font-family: 'Montserrat', sans-serif; margin-top: 5px"
+  fxLayout="column"
+  fxLayoutGap="10px"
+>
+  <div fxLayout="column">
+    <h1>Trending Games</h1>
+    <span>Based on player counts and release date</span>
+    <div *ngIf="gameLatest.length === 0" style="padding: 10px;">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+  </div>
+
+  <cdk-virtual-scroll-viewport itemSize="8" class="example-viewport">
+    <div *cdkVirtualFor="let game of gameLatest; index as i" class="example-item" fxFlex="0 0 auto" fxLayout="column" style="margin: 10px;">
+      <mat-card (click)="updateToDetailView($event,game.slug)" matRipple class="clickable" style="height: 250px; width: 160px; margin-left: 10px; "  fxLayoutGap="10px">
+        <div style="height: 70%;">
+          <img  fxLayoutAlign="center" src="{{game?.background_image}}" alt="test" style="height: 100%; width: 100%; object-fit: cover; margin-left: 5px; margin-top: 5px; ">
+        </div>
+        <!-- <div class="icon-row" *ngFor="let plat of game.platforms; index as i">
+          <span fxLayout="row" fxLayoutAlign="center">
+            <fa-icon *ngIf="plat.platform.id === 4" [icon]="steam"></fa-icon>
+            <fa-icon *ngIf="plat.platform.id === 187 || plat.platform.id === 18" [icon]="playstation"></fa-icon>
+            <fa-icon *ngIf="plat.platform.id === 1 || plat.platform.id === 186" [icon]="xbox"></fa-icon>
+          </span>
+        </div> -->
+        <span style="height: 30%; font-weight: bold; padding: 10px; text-align: center;">{{game?.name}}</span>
+      </mat-card>
+    </div>
+  </cdk-virtual-scroll-viewport>
+
+  <div>
+    <app-steam-panel  style="margin-top: 10px;"></app-steam-panel>
+  </div>
+  
+
+</div>

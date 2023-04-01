@@ -1,0 +1,78 @@
+<div>
+  <mat-toolbar
+    style="background-color: #2C3333; height: 50px; min-width: 50%"
+    fxLayout="row"
+    [fxLayoutAlign]="
+      onMobile() ? 'space-between center' : 'space-between start'
+    "
+  >
+    <div
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="20px"
+      style="color: #CBE4DE; margin-top: 7px;"
+    >
+      <span *ngIf="!onMobile()">ICON</span>
+      <button
+        class="custom-mat-button"
+        mat-button
+        *ngIf="!onMobile()"
+        [routerLink]="['/home']"
+      >
+        Home
+      </button>
+      <button class="custom-mat-button" mat-button [routerLink]="['/game']" *ngIf="!onMobile()">
+        Game Finder
+      </button>
+      <button class="custom-mat-button" mat-button *ngIf="!onMobile()">
+        About
+      </button>
+      <div *ngIf="onMobile()">
+        <button
+          class="custom-mat-button"
+          mat-button
+          [matMenuTriggerFor]="mobmenu"
+          style="margin-bottom: 7px;"
+        >
+          <mat-icon>menu</mat-icon>
+        </button>
+        <mat-menu #mobmenu="matMenu">
+          <button mat-menu-item [routerLink]="['/home']">Home</button>
+          <button mat-menu-item>About</button>
+          <button mat-menu-item [routerLink]="['/game']">Game Finder</button>
+          <button mat-menu-item routerLink="/dashboard">Dashboard</button>
+          <button mat-menu-item routerLink="/login" *ngIf="!isAuthenticated">
+            Login
+          </button>
+          <button mat-menu-item (click)="handleLogout()" *ngIf="isAuthenticated">
+            Logout
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end">
+      <button
+        style="color: #CBE4DE; margin-top: 7px;"
+        class="custom-mat-button"
+        mat-button
+        [matMenuTriggerFor]="menu"
+        *ngIf="!onMobile()"
+      >
+        Menu
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/dashboard">Dashboard</button>
+        <button mat-menu-item routerLink="/login" *ngIf="!isAuthenticated">
+          Login
+        </button>
+        <button mat-menu-item (click)="handleLogout()" *ngIf="isAuthenticated">
+          Logout
+        </button>
+      </mat-menu>
+    </div>
+  </mat-toolbar>
+</div>
+
+<div>
+  <router-outlet></router-outlet>
+</div>

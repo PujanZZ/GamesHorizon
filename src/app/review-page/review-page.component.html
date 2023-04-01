@@ -1,0 +1,48 @@
+<div *ngIf="!isLoading" fxLayoutAlign="center center" style="margin-top: 10px">
+    <mat-spinner [diameter]="45"></mat-spinner>
+  </div>
+
+<div *ngIf="isLoading" style="padding: 10px; font-family: 'Montserrat', sans-serif">
+
+    <div fxLayout="column" fxLayoutGap="30px" fxLayoutAlign="center center">
+        <span style="font-weight: bolder;font-size:30px ; color: #2C3333;">Rate the game experience.</span>
+        <mat-card style="background-image: url('{{gameDetails.background_image}}'); background-size: cover; background-position: top; width: 80%;" [style.height.px] = "onMobile() ? '450' : '450'" class="mat-elevation-z10">
+            <div style="border: 2px solid #CBE4DE; padding: 10px; background-color: #2C3333;">
+                <span [style.font-size.px]="onMobile() ? '20' : '30'" style="display: block; margin: 0; text-align: center; color:#CBE4DE; border: none;">
+                  {{gameDetails.name}}
+                </span>
+            </div>              
+            <form [formGroup]="formGroup" style="width: 100%;">
+                <div fxLayout="column" style="margin: 10px">
+                    <div [fxLayout]="onMobile() ? 'column' : 'row'" fxLayoutGap="10px">
+                        <mat-form-field appearance="fill" style="width: 100%;">
+                            <mat-label>User Name</mat-label>
+                            <input formControlName="user_name" matInput>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" style="width: 100%;">
+                            <mat-label>Game Code</mat-label>
+                            <input formControlName="game" matInput>
+                        </mat-form-field>
+                    </div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Write a review</mat-label>
+                        <textarea formControlName="review_text" matInput></textarea>
+                    </mat-form-field>
+                    <div>
+                        <button [disabled]="submitDisabled" (click)="onSubmit()" mat-raised-button color="primary">Submit</button>
+                    </div>
+                    <div>
+                        <button (click)="onUpdate()" matTooltip="Update the review" class="btnExtra" mat-icon-button style="margin-left: 10px;">
+                            <mat-icon>update</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </mat-card>
+        <mat-error style="font-weight: bolder; margin-top: 10px; font-size: 25px;" *ngIf="reviewError">*Duplicate document detected, review already added for the game</mat-error>
+        <mat-error style="font-weight: bolder; margin-top: 10px; font-size: 25px; color: green" *ngIf="reviewExist">*Review already added for this game</mat-error>
+    </div> 
+
+</div>
+
+

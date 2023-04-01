@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+.image-container {
+    position: relative;
+  }
+  
+  .image-container img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .content-container {
+    padding: 20px;
+  }
+  
+  .content-container h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+  
+  .fancy-card {
+    height: 100%;
+    box-shadow: rgba(0, 0, 0, 0.9) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.3) 0px -3px 0px inset;
+}
+
+
+  .last-div {
+    box-shadow: rgba(0, 137, 255, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  }
+
+    /* COLOR RATINGS */
+
+   .rating-container {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .rating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .title {
+    font-size: 14px;
+    font-weight: bold;
+    width: 80px;
+  }
+  
+  .percent {
+    font-size: 14px;
+    width: 60px;
+  }
+  
+  .bar {
+    height: 20px;
+    width: 400px;
+    margin-left: 10px;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .bar-inner {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 5px;
+  }
+  
+  .exceptional .bar-inner {
+    background-color: #4CAF50;
+    width: 90%;
+  }
+  
+  .recommended .bar-inner {
+    background-color: #FFC107;
+    width: 60%;
+  }
+  
+  .meh .bar-inner {
+    background-color: #FF9800;
+    width: 30%;
+  }
+  
+  .skip .bar-inner {
+    background-color: #F44336;
+    width: 10%;
+  }
+  
+
+  /* EXTRA CARD FLIP */
+  .new-list {
+    overflow-x: auto;
+}
+
+.example-viewport {
+  height: 300px;
+  width: 100%; 
+}
+
+.example-item {
+  height: 250px; 
+  margin-left: 0; 
+}
+
+.mat-card {
+  height: 100%; 
+  width: 160px;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.mat-card > div:first-child {
+  flex-grow: 1; 
+}
+
+.mat-card img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  margin-left: 5px;
+}
+
+.mat-card > div:last-child {
+  display: flex; 
+  flex-direction: row;
+  justify-content: center; 
+}
+
+.mat-card span {
+  height: 30px; 
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+}
+
+
+.btnExtra {
+  color: #2C3333
+}
+
+.clickable {
+  box-shadow: rgba(0, 0, 0, 0.9) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.3) 0px -3px 0px inset;
+}
+.clickable:hover {
+  box-shadow: rgba(255, 255, 255, 0) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.3) 0px -3px 0px inset;
+}

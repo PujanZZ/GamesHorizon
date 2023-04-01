@@ -1,0 +1,221 @@
+<div *ngIf="!isLoading" fxLayoutAlign="center center" style="margin-top: 10px">
+  <mat-spinner [diameter]="35"></mat-spinner>
+</div>
+
+<div
+  *ngIf="isLoading"
+  style="padding: 10px; font-family: 'Montserrat', sans-serif"
+>
+  <mat-card
+    class="fancy-card"
+    [fxLayout]="onMobile() ? 'column' : 'row'"
+    fxLayoutAlign="start stretch"
+    style="background-color: lightgray;"
+  >
+    <div class="image-container" [fxFlex]="onMobile() ? '60' : '20'">
+      <img src="{{ gameDetails['background_image'] }}" width="80%" alt="Fancy Image" />
+    </div>
+    <div
+      fxLayout="column"
+      class="content-container"
+      [fxFlex]="onMobile() ? 50 : 80"
+    >
+    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between start">
+      <h1
+        style="
+          font-family: 'Montserrat', sans-serif;
+          color: #2c3333;
+          font-weight: bolder;
+        "
+      >
+        {{ gameDetails["name"] }}
+      </h1>
+      <button (click)="navigateToReviewForm($event)" matTooltip="Post A Review" class="btnExtra" mat-icon-button style="margin-left: 10px;">
+        <mat-icon>assignment</mat-icon>
+      </button>
+      </div>
+      <mat-divider></mat-divider>
+      <mat-divider></mat-divider>
+      <!-- <h2 style="font-family: 'Montserrat', sans-serif; color: #2C3333;">About</h2> -->
+      <p style="margin-top: 10px">{{ gameDetails["description_raw"] }}</p>
+      <div fxLayout="row" fxLayoutGap="15px">
+        <div fxLayout="column">
+          <span style="font-weight: bolder; color: gray">Release Date</span>
+          <span>{{ gameDetails["released"] }}</span>
+        </div>
+
+        <div fxLayout="column">
+          <span style="font-weight: bolder; color: gray">Developers</span>
+          <div *ngFor="let devs of gameDetails['developers']">
+            <span>{{ devs?.name }}</span>
+          </div>
+        </div>
+
+        <div fxLayout="column">
+          <span style="font-weight: bolder; color: gray">Genres</span>
+          <div *ngFor="let devs of gameDetails['genres']">
+            <span>{{ devs?.name }}</span>
+          </div>
+        </div>
+
+        <div fxLayout="column">
+          <span style="font-weight: bolder; color: gray">Metacritic</span>
+          <div fxLayoutAlign="center">
+            <div
+              fxLayoutAlign="center"
+              style="width: 40%; border: #6dc849 2px solid; border-radius: 5px"
+            >
+              <span
+                style="color: #6dc849; text-align: center; font-weight: bold"
+                >{{ gameDetails["metacritic"] }}</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div fxLayout="column" style="width: 100%">
+        <span style="font-weight: bolder; color: gray; pointer-events: none"
+          >Website</span
+        >
+        <a
+          style="
+            color: black;
+            width: 50%;
+            display: inline-block;
+            text-decoration: none;
+            border-bottom: 1px solid black;
+          "
+          href="{{ gameDetails['website'] }}"
+          >{{ gameDetails["website"] }}</a
+        >
+      </div>
+
+      <div fxLayout="column" style="width: 100%">
+        <span style="font-weight: bolder; color: gray; margin-top: 10px"
+          >SYSTEM REQUIREMENTS</span
+        >
+        <mat-divider [style.width.%]="onMobile() ? '100' : '50'"></mat-divider>
+        <div
+          *ngFor="let req of gameDetails['platforms']"
+          fxLayout="row"
+          fxLayoutAlign="space-between"
+          [style.width.%]="onMobile() ? '100' : '50'"
+        >
+          <div fxLayout="column" *ngIf="req.platform.id === 4">
+            <h3>MINIMUM:</h3>
+            <span>{{ req["requirements"]["minimum"] }}</span>
+          </div>
+          <div fxLayout="column" *ngIf="req.platform.id === 4">
+            <h3>RECOMMENDED:</h3>
+            <span>{{ req["requirements"]["recommended"] }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="last-div" [fxFlex]="onMobile() ? '30' : '10'">
+      <h2 fxLayoutAlign="center" style="font-family: 'Montserrat', sans-serif">
+        Platforms
+      </h2>
+      <div
+        *ngFor="let p of gameDetails['platforms']"
+        fxLayoutAlign="center center"
+      >
+        <span style="text-align: center; font-size: small">{{
+          p?.platform?.name
+        }}</span>
+        <div fxLayout="column" style="margin-left: 5px">
+          <fa-icon *ngIf="p?.platform?.id === 4" [icon]="steam"></fa-icon>
+          <fa-icon
+            *ngIf="p?.platform?.id === 187 || p?.platform?.id === 18"
+            [icon]="playstation"
+          ></fa-icon>
+          <fa-icon
+            *ngIf="p?.platform?.id === 186 || p?.platform?.id === 1"
+            [icon]="xbox"
+          ></fa-icon>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+
+  <div style="margin-top: 20px;">
+    <mat-chip-option (click)="togglePieDiv()">Pie Chart Rating</mat-chip-option>
+    <mat-chip-option (click)="toggleLineDiv()" style="margin-left: 5px;">Ratings</mat-chip-option>
+  </div>
+
+  <div [fxLayout]="onMobile() ? 'column' : 'row'">
+
+    <div *ngIf="isLoading && showRatingDiv" style="margin-top: 10px;" [style.width.%]="onMobile() ? '100' : '50'">
+      <mat-accordion>
+        <mat-expansion-panel
+          (opened)="panelOpenState = true"
+          (closed)="panelOpenState = false"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title> Rankings </mat-panel-title>
+            <mat-panel-description>
+              Click to checkout rankings chart!
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+            <h1
+              style="
+                font-family: 'Montserrat', sans-serif;
+                color: #2c3333;
+                font-weight: bolder;
+                margin-top: 30px;
+                font-size: 5vh;
+              "
+              fxLayoutAlign="center"
+            >
+              Ratings Chart
+            </h1>
+            <div style="height: 50vh; width: 50vh; margin-left: 150px;" fxLayoutAlign="center">
+              <canvas
+                baseChart
+                [type]="'pie'"
+                [data]="pieChartData"
+                [options]="pieChartOptions"
+                [plugins]="pieChartPlugins"
+                [legend]="pieChartLegend"
+              >
+              </canvas>
+            </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <mat-divider></mat-divider>
+    <div  *ngIf="showLineDiv" class="rating-container" style="margin-top: 10px" [style.width.%]="onMobile() ? '100' : '50'" >
+      <div *ngFor="let rating of ratings" class="rating">
+        <div class="title">{{ rating.title }}</div>
+        <div class="percent" [style.color]="getRatingColor(rating.title)" >{{ rating.percent }}%</div>
+        <div class="bar" [ngClass]="rating.title.toLowerCase()" [style.background-color]="getRatingColor(rating.title)">
+          <div class="bar-inner" [style.width.%]="rating.percent" [style.background-color]="getRatingColor(rating.title)"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <mat-divider style="margin-top: 20px;"></mat-divider>
+
+  <div fxLayout="column">
+
+    <h1 style="font-family: 'Montserrat', sans-serif;color: #2c3333;font-weight: bolder;margin-top: 30px;font-size: 5vh;">Famous Games from the Same Developers</h1>
+    <cdk-virtual-scroll-viewport *ngIf="dev_data?.length !== 0" itemSize="8" class="example-viewport" style="background-color: #2C3333;">
+      <div *ngFor="let dev_game of dev_data; index as i" class="example-item" fxFlex="0 0 auto" fxLayout="column" style="margin: 10px;">
+        <mat-card class="clickable" matRipple style="height: 250px; width: 160px; margin-left: 10px; "  fxLayoutGap="10px">
+          <div style="height: 70%;">
+            <img  fxLayoutAlign="center" src="{{dev_game?.background_image}}" alt="test" style="height: 100%; width: 100%; object-fit: cover; margin-left: 5px; margin-top: 5px; ">
+          </div>
+          <span style="font-weight: bold; padding: 10px; text-align: center;">{{dev_game?.name}}</span>
+          <span style="font-weight: bold; padding: 10px; text-align: center;">{{dev_game?.released}}</span>
+        </mat-card>
+      </div>
+    </cdk-virtual-scroll-viewport>
+    <span *ngIf="dev_data?.length === 0">No Other Games Found</span>
+
+  </div>
+
+  <mat-divider style="margin-top: 20px;"></mat-divider>
+
+</div>

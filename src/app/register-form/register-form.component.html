@@ -1,0 +1,70 @@
+<div fxLayoutAlign="center" style="padding: 35px;">
+  <mat-card
+    [fxLayout]="'column'"
+    [style.width]="onMobile() ? '70%' : '50%'"
+    fxLayoutAlign="center center"
+    style="padding: 20px; background-color: #f2f2f2; color: #1a1a1a"
+    class="matcardShadow"
+  >
+    <h1 fxLayoutAlign="center" style="margin-bottom: 20px; font-weight: bold; color: #1a1a1a">
+      Create User with Email
+    </h1>
+    <form
+      [formGroup]="userForm"
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      style="width: 100%"
+    >
+      <div fxLayout="column" style="width: 70%; margin-left: 20px;">
+        <mat-form-field appearance="fill" style="width: 100%">
+          <mat-label style="color: black">Name</mat-label>
+          <input formControlName="name" #nameInput type="text" matInput />
+          <mat-error>{{getNameError()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 100%">
+          <mat-label style="color: black">Email</mat-label>
+          <input formControlName="email" #emailInput type="email" matInput />
+          <mat-error *ngIf="userForm.controls.email.errors?.['emailTaken']">Email is already taken.</mat-error>
+          <mat-error>{{getEmailError()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 100%">
+          <mat-label style="color: black">Password</mat-label>
+          <input
+            formControlName="password"
+            #passwordInput
+            type="password"
+            matInput
+          />
+          <mat-hint align="start" *ngIf="!error?.error.password" class="warn">Give a strong password</mat-hint>
+          <mat-hint align="end">{{passwordInput.value.length}}/200</mat-hint>
+          <mat-error>{{getPasswordError()}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div
+        fxLayout="row"
+        fxLayoutAlign="center"
+        style="margin: 10px"
+        fxLayoutGap="20px"
+        *ngIf="!isLoading"
+      >
+        <button
+          mat-flat-button
+          color="primary"
+          type="button"
+          [disabled]="loginDisabled()"
+          (click)="
+            handleCreateClick(
+              emailInput.value,
+              passwordInput.value,
+              nameInput.value
+            )
+          "
+        >
+          Create Account
+        </button>
+      </div>
+      <mat-spinner *ngIf="isLoading" [diameter]="40"></mat-spinner>
+      <span style="color: red;font-size: 14px;font-weight: bold; text-align:center" *ngIf="registerError">{{ registerError }}</span>
+    </form>
+  </mat-card>
+</div>

@@ -1,0 +1,21 @@
+<div style="margin-top: 30px; font-family: 'Montserrat', sans-serif; margin-top: 5px">
+    <h1>Popular games on steam</h1>
+    <mat-card class="clickCard" style="margin: 10px">
+        <div style="padding: 10px;" *ngIf="cardOpen">
+            <span>{{cardOpen.name}}</span>
+        </div>
+    </mat-card>
+    <div [fxLayout]="onMobile() ? 'column wrap' : 'row wrap'" [fxLayoutAlign]="onMobile() ? 'center start' : 'start center'" fxLayoutGap="20px">
+        <div fxFlex="20%" *ngFor="let steam of steamGames; index as i">
+          <mat-card (click)="onCardClick(i)" class="steamCard" style="margin: 10px">
+            <div style="padding: 10px;">
+                <span>{{steam.name}}</span>
+            </div>
+          </mat-card>
+        </div>
+    </div>
+
+
+      
+    
+</div>
