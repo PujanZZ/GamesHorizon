@@ -1,21 +1,25 @@
-<div style="margin-top: 30px; font-family: 'Montserrat', sans-serif; margin-top: 5px">
-    <h1>Popular games on steam</h1>
-    <mat-card class="clickCard" style="margin: 10px">
-        <div style="padding: 10px;" *ngIf="cardOpen">
-            <span>{{cardOpen.name}}</span>
-        </div>
-    </mat-card>
-    <div [fxLayout]="onMobile() ? 'column wrap' : 'row wrap'" [fxLayoutAlign]="onMobile() ? 'center start' : 'start center'" fxLayoutGap="20px">
-        <div fxFlex="20%" *ngFor="let steam of steamGames; index as i">
-          <mat-card (click)="onCardClick(i)" class="steamCard" style="margin: 10px">
-            <div style="padding: 10px;">
-                <span>{{steam.name}}</span>
+<div fxLayout="column" fxLayoutAlign="center center" style="background-color: #171a21; padding: 20px; font-family: 'Montserrat', sans-serif;">
+    <img src="https://store.steampowered.com/public/shared/images/header/logo_steam.svg?t=962016" alt="Steam Logo" style="width: 200px; height: auto;">
+    <h1 style="color: white; margin-top: 30px; margin-bottom: 20px; text-align: center;">Popular games on Steam</h1>
+    <cdk-virtual-scroll-viewport itemSize="8" class="example-viewport" fxLayout="row wrap" fxLayoutAlign="center center">
+      <div *cdkVirtualFor="let steam of steamGames; index as i" class="example-item" fxFlex="0 0 160px" style="margin: 10px;">
+        <mat-card (click)="updateToDetailView($event,steam.slug)" matRipple class="clickable" style="height: 260px; width: 200px; margin-left: 10px; background-color: #282c34; color: white; border-radius: 10px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);">
+          <div style="height: 70%; border-radius: 10px; overflow: hidden;">
+            <img fxLayoutAlign="center center" [src]="steam?.background_image" alt="{{steam?.name}}" style="height: 100%; width: 100%; object-fit: cover;">
+          </div>
+          <div style="height: 30%; display: flex; flex-direction: column; justify-content: center; padding: 10px;">
+            <span style="font-size: 0.9rem; font-weight: bold; margin-bottom: 5px;">{{steam?.name}}</span>
+            <div fxLayout="row wrap" fxLayoutAlign="start center">
+              <span *ngFor="let genre of steam.genres" style="padding: 2px 5px; border-radius: 5px; background-color: #545c69; font-size: 0.8rem; margin-right: 5px;">{{genre.name}}</span>
             </div>
-          </mat-card>
-        </div>
-    </div>
-
-
-      
-    
+          </div>
+        </mat-card>
+      </div>
+    </cdk-virtual-scroll-viewport>
 </div>
+
+
+
+
+
+  

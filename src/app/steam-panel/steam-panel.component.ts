@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MovieListService } from '../shared/services/movie.list.service';
 import { Subscription, map } from 'rxjs';
 import { GameDetails } from '../shared/services/GameList';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-steam-panel',
@@ -16,6 +17,7 @@ export class SteamPanelComponent {
 
   constructor(
     private movieService: MovieListService,
+    private route: Router,
   ) {
 
     this.subs = new Subscription;
@@ -43,6 +45,9 @@ export class SteamPanelComponent {
   ///// extra functions//
   ///////////////////////
 
+  public updateToDetailView(evt: MouseEvent,name: string){
+    this.route.navigate((['/home',name]))
+  }
 
   onCardClick(index: number) {
     this.cardOpen = this.steamGames[index];

@@ -17,8 +17,9 @@ export class DashboardComponent {
   subs: Subscription;
   uuid: string | null | undefined;
   hoveredIndex = 0;
+  isLoading: boolean = false;
 
-  docData!: ReviewData[];
+  docData: ReviewData[] = []
   formattedDate!: string;
 
   formGroup = new FormGroup({
@@ -63,6 +64,7 @@ export class DashboardComponent {
         const data = doc.map((a: ReviewData) => a)
     
         this.docData = data;
+        this.isLoading = true;
         console.log(this.docData)
       })
     });

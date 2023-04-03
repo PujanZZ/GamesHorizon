@@ -1,51 +1,3 @@
-<!-- <div
-  fxLayout="column"
-  style="margin: 20px; height: 100%"
-  *ngIf="afAuth.user | async as user"
-  fxLayout="column"
-  fxLayoutAlign="start stretch"
-  fxLayoutGap="10px"
->
-  <div style="background-color: #3884b1;margin-top: 15px;">
-    <h1 fxLayoutAlign="center">DASHBOARD</h1>
-    <div
-    [fxLayout]="onMobile() ? 'column' : 'row'"
-    fxLayoutAlign="start center"
-    fxLayoutGap="10px"
-    style="margin-top: 20px; margin-left: 20px"
-  >
-    <mat-card
-      style="width: 150px; height: 150px; border: dotted; border-radius: 3px"
-    ></mat-card>
-    <div fxLayout="column" fxLayoutAlign="center">
-      <h2>{{ user.displayName }}</h2>
-      <h3>{{ user.email }}</h3>
-    </div>
-  </div>
-  </div>
-
-  <div fxLayout="column">
-    <mat-tab-group style="width: 100%;">
-      <mat-tab label="My Details">
-        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px" style="margin-top: 30px;">
-          <h3>Name:</h3>
-          <mat-form-field>
-            <input #userName matInput placeholder="Enter Name">
-          </mat-form-field>
-          <button mat-icon-button (click)="handleUsernameUpdate(userName.value)">
-            <mat-icon>update</mat-icon>
-          </button>
-        </div>
-      </mat-tab>
-      <mat-tab label="Profile">
-        Content 2
-      </mat-tab>
-    </mat-tab-group>
-  </div>
-  
-  
-</div> -->
-
 <div fxLayout="column" style="height: 100%; margin: 20px; font-family: 'Montserrat', sans-serif; margin-top: 5px" *ngIf="afAuth.user | async as user">
   <div style="background-color: #2C3333; margin-top: 15px;">
     <h1 style="text-align: center; color: white; margin-top: 10px;">DASHBOARD</h1>
@@ -61,26 +13,19 @@
   <div fxLayout="column" style="margin-top: 30px;">
     <mat-tab-group style="width: 100%;">
       <mat-tab label="Your Reviews">
-
         <h2 style="margin-top: 10px;">Game Reviews: </h2>
-        <!-- <div fxLayout="column" fxLayoutGap="20px" style="margin-bottom: 20px; margin-top: 20px;">
-          <mat-card  *ngFor="let review of docData" class="reviewCard" [fxLayout]="onMobile() ? 'column' : 'row'" [fxLayoutAlign]="onMobile() ? 'start center' : 'start start'" style="background-color: #2C3333; color: white; padding: 20px;">
-            <img src="{{review?.image?.img1}}" alt="test" style="object-fit: cover; width: 250px; height: 150px; border: 1px solid black; margin-right: 20px; border-radius: 15px;">
-            <div fxLayout="column" fxLayoutGap="20px" style="margin-top: 5px;">
-              <span style="font-size: 16px; font-weight: bold;">{{review.game_name}}</span>
-              <div fxLayout="column">
-                <span style="font-size: 14px;"><strong>Your Review: </strong></span>
-                <span style="font-size: 14px; color: grey;">{{review.review_text}}</span>
-              </div>
-            </div>
-          </mat-card>
-        </div> -->
+
+        <div *ngIf="!isLoading">
+          <mat-spinner [diameter]="40" style="color: #000000;"></mat-spinner>
+        </div>
+
+        <div *ngIf="docData.length === 0">
+          <span style="font-size: 18px; font-weight: bold;">You have no reviews posted</span>
+        </div>
 
         <div fxLayout="column" fxLayoutGap="20px" style="margin-bottom: 20px; padding: 30px;">
           <mat-card *ngFor="let review of docData" class="reviewCard" [fxLayout]="onMobile() ? 'column' : 'row'" [fxLayoutAlign]="onMobile() ? 'start center' : 'start start'" style="background-color: #F7F7F7; color: #2C3333; padding: 20px;">
-            <img class="reviewImg" src="{{review?.image?.img1}}" alt="test" style="object-fit: cover; width: 250px; height: 150px;  margin-right: 20px; border-radius: 15px;">
-            <!-- <img class="reviewImg" src="{{review?.image?.img2}}" alt="test" style="object-fit: cover; width: 250px; height: 150px;  margin-right: 20px; border-radius: 15px;"> -->
-            
+            <img class="reviewImg" src="{{review?.image?.img1}}" alt="test" style="object-fit: cover; width: 250px; height: 150px;  margin-right: 20px; border-radius: 15px;"> 
             <div fxLayout="column" fxLayoutGap="20px" style="margin-top: 5px;">
               <span style="font-size: 18px; font-weight: bold;">{{review.game_name}}</span>
               <div fxLayout="column">
@@ -89,11 +34,7 @@
               </div>
             </div>
           </mat-card>
-        </div>
-        
-
-        
-        
+        </div>  
       </mat-tab>
       <mat-tab label="My Details">
         <div [formGroup]="formGroup" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px" style="margin-top: 30px;">
@@ -104,7 +45,7 @@
           <button [disabled]="submitDisabled" mat-raised-button color="primary" (click)="handleUsernameUpdate(userName.value)">Update</button>
         </div>
       </mat-tab>
-
     </mat-tab-group>
   </div>
+
 </div>
