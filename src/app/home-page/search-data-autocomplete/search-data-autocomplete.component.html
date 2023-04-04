@@ -1,0 +1,40 @@
+<!-- <mat-form-field appearance="fill" style="width: 50%;">
+    <mat-label>Search</mat-label>
+    <input [formControl]="formControl" matInput>
+</mat-form-field> -->
+
+<div fxLayout="column" fxLayoutGap="20px" style="margin-top: 20px;">
+
+<h1>Search for a game*</h1>
+<span>Drag any selected games to your exclusive favourite list!</span>
+<form class="example-form">
+  <mat-form-field class="example-full-width" appearance="fill" style="width: 50%;">
+    <mat-label>Select a game</mat-label>
+    <input type="text"
+           placeholder="Select Game"
+           matInput
+           [formControl]="formControl"
+           [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of gameResults" [value]="option">
+        {{option.name}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+
+<div *ngIf="selectedResults.length !== 0" fxLayoutGap="10px" fxLayout="row" fxLayoutAlign="space-around" style="width: 100%;">
+  <div class="selectList">
+    <h2>Here are your selected games</h2>
+      <div *ngFor="let selected of selectedResults" style="width: 100%;; margin-bottom: 5px;" fxLayout="column">
+        <mat-card class="selectCards" style="padding: 10px;" fxLayoutAlign="start start">
+            {{selected.name}}
+        </mat-card>
+      </div>
+  </div>
+  <div class="favList">
+    <h2>Favourite Games!</h2>
+  </div>
+</div>
+
+</div>

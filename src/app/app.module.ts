@@ -27,6 +27,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 //import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -47,6 +48,7 @@ import { HomePageDetailsComponent } from './home-page/home-page-details/home-pag
 import { GameListComponent } from './game-list/game-list.component';
 import { ReviewPageComponent } from './review-page/review-page.component';
 import { SteamPanelComponent } from './steam-panel/steam-panel.component';
+import { SearchDataAutocompleteComponent } from './home-page/search-data-autocomplete/search-data-autocomplete.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,7 @@ import { SteamPanelComponent } from './steam-panel/steam-panel.component';
     GameListComponent,
     ReviewPageComponent,
     SteamPanelComponent,
+    SearchDataAutocompleteComponent,
   ],
   imports: [
     MatFormFieldModule,
@@ -91,7 +94,7 @@ import { SteamPanelComponent } from './steam-panel/steam-panel.component';
     MatChipsModule,
     MatPaginatorModule,
     MatTooltipModule,
-
+    MatAutocompleteModule,
     
   ],
   providers: [AuthService,LogUserService,MovieListService],

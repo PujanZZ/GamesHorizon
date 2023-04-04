@@ -89,6 +89,16 @@ export class MovieListService {
     )
   };
 
+  getSearchResultAutoComplete(search_vector: string | null): Observable<any> {
+    const apiUrl = `https://api.rawg.io/api/games?key=${this.apiKey}&page_size=5&search=${search_vector}`
+    return this.http.get(apiUrl).pipe(
+      catchError(error => {
+        console.log(error)
+        return of(null);
+      })
+    )
+  }
+
   ngAfterViewInit(){}
 
 }
