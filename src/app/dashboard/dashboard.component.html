@@ -1,4 +1,4 @@
-<div fxLayout="column" style="height: 100%; margin: 20px; font-family: 'Montserrat', sans-serif; margin-top: 5px" *ngIf="afAuth.user | async as user">
+<div fxLayout="column" style="height: 100%; margin: 20px; font-family: 'Montserrat', sans-serif; margin-top: 65px" *ngIf="afAuth.user | async as user">
   <div style="background-color: #2C3333; margin-top: 15px;">
     <h1 style="text-align: center; color: white; margin-top: 10px;">DASHBOARD</h1>
     <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" style="margin: 20px;">
@@ -27,7 +27,8 @@
           <mat-card *ngFor="let review of docData" class="reviewCard" [fxLayout]="onMobile() ? 'column' : 'row'" [fxLayoutAlign]="onMobile() ? 'start center' : 'start start'" style="background-color: #F7F7F7; color: #2C3333; padding: 20px;">
             <img class="reviewImg" src="{{review?.image?.img1}}" alt="test" style="object-fit: cover; width: 250px; height: 150px;  margin-right: 20px; border-radius: 15px;"> 
             <div fxLayout="column" fxLayoutGap="20px" style="margin-top: 5px;">
-              <span style="font-size: 18px; font-weight: bold;">{{review.game_name}}</span>
+              <span style="font-size: 20px; font-weight: bolder;">{{review.game_name}}</span>
+              <span style="font-size: 14px; font-weight: 500;"><strong>Posted on:</strong> {{review.created_at | date:'MMM d, y HH:mm'}}</span>
               <div fxLayout="column">
                 <span style="font-size: 16px;"><strong>Your Review: </strong></span>
                 <span style="font-size: 14px; color: #555;">{{review.review_text}}</span>

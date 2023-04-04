@@ -1,4 +1,4 @@
-<div fxLayout="column" style="padding: 10px; font-family: 'Montserrat', sans-serif; margin-top: 5px">
+<div fxLayout="column" style="padding: 10px; font-family: 'Montserrat', sans-serif; margin-top: 65px">
     <h1>Explore the World of Gaming!</h1>
     <div style="margin-top: 15px;">
         <mat-form-field  appearance="fill" style="width: 100%;">
@@ -14,47 +14,7 @@
     </div>
 
         <div *ngIf="searchRes">
-        <!-- CARDS -->
             <div style="margin:10px" *ngFor="let list of searchRes">
-
-                <!-- <mat-card style="background-image: url('{{list?.background_image}}'); background-size: cover; background-position: top; max-height: 20%;">
-                    <div style="background-color: rgba(255, 255, 255, 0.7); padding: 32px;" fxLayout="row" fxLayoutGap="10px">
-                        <img  fxLayoutAlign="center" src="{{list?.background_image}}" alt="test" style="object-fit: cover; width: 20%; ">
-                        <div fxLayout="column">
-                            <span style="height: 30%; font-weight: bold; padding: 10px; text-align: center;">{{list?.name}}</span>
-                            <p>{{list?.released}}</p>
-                        </div>
-                    </div>
-                </mat-card> -->
-
-                <!-- <mat-card style="background-image: url('{{list?.background_image}}'); background-size: cover; background-position: top; max-height: 20%; display: flex;">
-                    <div style="background-color: rgba(255, 255, 255, 0.7); padding: 32px; display: flex; flex: 1;">
-                    <div style="display: flex; align-items: center; justify-content: center; width: 20%;">
-                        <img src="{{list?.background_image}}" alt="test" style="object-fit: cover; width: 100%;">
-                    </div>
-                    <div style="display: flex; flex-direction: column; flex: 1; padding-left: 10px;">
-                        <span style="font-weight: bold;">{{list?.name}}</span>
-                        <span style="font-weight: bold;">{{list?.released}}</span>
-                    </div>
-                    </div>
-                </mat-card> -->
-
-                    <!-- <mat-card style="background-image: url('{{list?.background_image}}'); background-size: cover; background-position: top; height: 200px; display: flex;">
-                        <div style="background-color: rgba(255, 255, 255, 0.7); padding: 32px; display: flex; flex: 1;">
-                            <div style="display: flex; align-items: center; justify-content: center; width: 20%; height: 150px;">
-                                <img src="{{list?.background_image}}" alt="test" style="object-fit: cover; width: 100%; height: 150px;">
-                            </div>
-                            <div style="display: flex; flex-direction: column; padding-left: 10px; width: 100%;">
-                                <span style="font-weight: bold;">{{list?.name}}</span>
-                                <span style="font-weight: bold;">{{list?.released}}</span>
-                            </div>
-                            <div fxLayoutAlign="end end">
-                                <button class="btnExtra" mat-flat-button>More Details</button>
-                                <button class="btnExtra" mat-flat-button style="margin-left: 10px;">Rate the game</button>
-                            </div>
-                        </div>
-                    </mat-card> -->
-
                     <mat-card class="listCard" style="background-image: url('{{list?.background_image}}'); background-size: cover; background-position: top;" [style.height.px] = "onMobile() ? '310' : '200'">
                         <div [fxLayout]="onMobile() ? 'column' : 'row'" fxLayoutAlign="space-between" style="background-color: rgba(255, 255, 255, 0.7); height: 100%; padding: 32px;">
                           <div fxLayout="row" fxLayoutAlign="center center" [fxFlex]="onMobile() ? '80%' : '20%'">

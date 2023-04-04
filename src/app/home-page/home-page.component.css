@@ -60,3 +60,19 @@ h1 {
 .clickable:hover {
   box-shadow: rgba(0, 0, 0, 0) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.3) 0px -3px 0px inset;
 }
+
+.h1class {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.forReview {
+  background-image: url("https://i.imgur.com/yJ1xuOz.jpeg");
+  background-size: cover;
+  color: white;
+  padding: 10px;
+}
+
+.review-eg {
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}

@@ -17,5 +17,12 @@ h1 {
   
   .clickable {
     cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     box-shadow: rgba(255, 255, 255, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
   }
+
+  .clickable:hover {
+    transform: rotateY(10deg) scale(1.05) translateY(-5px);
+    box-shadow: rgba(255, 255, 255, 0.5) 0px 0.5em 1.5em, rgba(0, 0, 0, 0.2) 0px 0.125em 0.5em;
+  }
+
