@@ -21,6 +21,7 @@ export class LoginFormComponent {
     password: new FormControl<string | null>('', [Validators.required, Validators.minLength(8)]),
   })
   error!: HttpErrorResponse
+  hide: boolean = true;
 
   constructor(
     public authService: AuthService,

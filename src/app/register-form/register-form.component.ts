@@ -18,6 +18,7 @@ export class RegisterFormComponent {
   error: any;
   isLoading: boolean = false;
   subs: Subscription;
+  hide: boolean = true;
 
   userForm = new FormGroup({
     name: new FormControl('', [Validators.required]),

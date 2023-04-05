@@ -32,9 +32,12 @@
           <input
             formControlName="password"
             #passwordInput
-            type="password"
+            [type]="hide ? 'password' : 'text'"
             matInput
           />
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
           <mat-hint align="start" *ngIf="!error?.error.password" class="warn">Give a strong password</mat-hint>
           <mat-hint align="end">{{passwordInput.value.length}}/200</mat-hint>
           <mat-error>{{getPasswordError()}}</mat-error>
