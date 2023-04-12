@@ -28,6 +28,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 //import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -95,6 +96,7 @@ import { SearchDataAutocompleteComponent } from './home-page/search-data-autocom
     MatPaginatorModule,
     MatTooltipModule,
     MatAutocompleteModule,
+    DragDropModule,
     
   ],
   providers: [AuthService,LogUserService,MovieListService],

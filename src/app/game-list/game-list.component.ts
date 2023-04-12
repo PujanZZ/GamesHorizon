@@ -28,7 +28,7 @@ get searchValue() {
 }
 
 get searchDisabled() {
-  return !(this.searchBar.dirty && this.searchBar.touched && this.searchBar.valid) || this.searching;
+  return !this.searchBar.dirty || this.searchBar.invalid
 }
 
 constructor(
@@ -48,27 +48,6 @@ ngOnInit() {
 ngOnDestroy() {
   this.subs.unsubscribe()
 }
-
-// onSearchButtonClick() {
-//   const query = this.searchBar.value;
-//   this.searching = true;
-//   if (query && query.length > 0) {
-//     this.spinner = true;
-//     this.movieService.getSearchResult(query).subscribe((v)=> {
-    
-//       const search_results: GameDetails[] = v.results
-//       this.searchRes = [...search_results]
-//       console.log(this.searchRes);
-//       this.spinner = false;
-//       this.searching = false;
-
-//       this.searchBar.reset()
-//       console.log(this.searchBar)
-//     });
-
-    
-//   }
-// }
 
 onPageChange() {
   const query = this.searchBar.value;

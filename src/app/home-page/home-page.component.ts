@@ -82,6 +82,10 @@ export class HomePageComponent {
   public updateToDetailView(evt: MouseEvent,name: string){
     this.route.navigate((['/home',name]))
   }
+
+  updateToGameList(){
+    this.route.navigate((['/game']))
+  }
   
   onMobile(): boolean {
     return window.innerWidth <= 700;

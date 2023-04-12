@@ -22,5 +22,25 @@ h1 {
 
   }
 
+  ::ng-deep.mat-tab-label {
+    min-width: 60px!important;
+    padding: 3px!important;
+    margin: 3px!important;
+   }
 
+   .reviewCard {
+    position: relative;
+  
+    .mat-button-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    button[mat-icon-button] {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+    }
+  }
   

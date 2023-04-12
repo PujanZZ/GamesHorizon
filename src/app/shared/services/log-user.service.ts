@@ -132,6 +132,15 @@ export class LogUserService {
     }
   }
 
+  deleteDocument(uuid: string | null | undefined, slug: string | null): void {
+    if (this.firestore.collection(`${uuid}`)) {
+      const docRef = this.firestore.collection(`${uuid}`).doc(`${slug}`);
+      docRef.delete();
+    } else {
+      console.log('User has no document');
+    }
+  }
+
   getDocumentOfUser(uuid: string | undefined): Observable<any> {
     const collectionRef = this.firestore.collection(`${uuid}`);
 

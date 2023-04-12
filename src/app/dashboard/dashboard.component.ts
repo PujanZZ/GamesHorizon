@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewEncapsulation } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AuthService } from '../shared/services/auth.service';
 import { Subscription, combineLatest, map } from 'rxjs';
@@ -9,7 +9,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent {
 
@@ -31,6 +32,7 @@ export class DashboardComponent {
     public authService: AuthService,
     public afAuth: AngularFireAuth,
     private logService: LogUserService,
+    private cd: ChangeDetectorRef,
   ) {
     this.subs = new Subscription;
   }
@@ -65,7 +67,6 @@ export class DashboardComponent {
     
         this.docData = data;
         this.isLoading = true;
-        console.log(this.docData)
       })
     });
 
@@ -86,6 +87,20 @@ export class DashboardComponent {
   handleUsernameUpdate(userName : string) {
     this.logService.handleUpdateUserName(userName);
   }
+
+  onDocDelete(slug: string | null) {
+    this.logService.deleteDocument(this.uuid, slug);
+    // Remove the deleted document from the docData array
+    this.docData = this.docData.filter(doc => doc.game_name !== slug);
+    // Trigger change detection to update the UI
+    this.cd.detectChanges();
+  }
+  
+  
+
+  ////////////////
+  //// extra /////
+  ////////////////
 
   onMobile(): boolean {
     return window.innerWidth <= 700;
