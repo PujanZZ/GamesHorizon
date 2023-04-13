@@ -71,4 +71,12 @@ export class SearchDataAutocompleteComponent {
     this.subs.unsubscribe();
   }
 
+  ///////////////////////
+  ////// extra //////////
+  ///////////////////////
+
+  onMobile(): boolean {
+    return window.innerWidth <= 700;
+  }
+
 }

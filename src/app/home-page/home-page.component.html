@@ -27,7 +27,7 @@
   </div>
   
   <div *ngIf="gameLatest.length !== 0" fxLayout="column" class="forReview">
-    <div fxLayout="row">
+    <div [fxLayout]="onMobile() ? 'column' : 'row'">
       <h1 class="h1class">Search for your favourite game, and post reviews</h1>
       <span style="height: 30%; font-weight: bold; padding: 10px; text-align: center;">
         At Games Horizon, we believe that the best reviews come from real players who have experienced the game first-hand.  

@@ -1,7 +1,7 @@
 <div fxLayoutAlign="center" style="padding: 85px;">
   <mat-card
     [fxLayout]="'column'"
-    [style.width]="onMobile() ? '70%' : '50%'"
+    [style.width]="onMobile() ? '' : '50%'"
     fxLayoutAlign="center center"
     style="padding: 20px; background-color: #f2f2f2; color: #1a1a1a"
     class="matcardShadow"
@@ -12,10 +12,10 @@
     <form
       [formGroup]="userForm"
       fxLayout="column"
-      fxLayoutAlign="center center"
+      [fxLayoutAlign]="!onMobile() ? '' : ''"
       style="width: 100%"
     >
-      <div fxLayout="column" style="width: 70%; margin-left: 20px;">
+      <div fxLayout="column" [style.width.%]="onMobile() ? '120%' : '80%'" style=" margin-left: 20px;">
         <mat-form-field appearance="fill" style="width: 100%">
           <mat-label style="color: black">Name</mat-label>
           <input formControlName="name" #nameInput type="text" matInput />

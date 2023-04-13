@@ -1,8 +1,3 @@
-<!-- <mat-form-field appearance="fill" style="width: 50%;">
-    <mat-label>Search</mat-label>
-    <input [formControl]="formControl" matInput>
-</mat-form-field> -->
-
 <div fxLayout="column" fxLayoutGap="20px" style="margin-top: 20px;">
 
 <h1>Drag and Drop*</h1>
@@ -23,7 +18,8 @@
   </mat-form-field>
 </form>
 
-<div  fxLayoutGap="10px" fxLayout="row" fxLayoutAlign="space-around" style="width: 100%;">
+<div [fxLayoutGap]="onMobile() ? '0px' : '10px'" fxLayout=row>
+
   <div class="selectList">
     <h2>Here are your selected games</h2>
     <mat-divider></mat-divider>
@@ -33,10 +29,14 @@
         </mat-card>
       </div>
   </div>
+
   <div class="favList">
     <h2>Favourite Games!</h2>
     <mat-divider></mat-divider>
   </div>
+
 </div>
+
+
 
 </div>

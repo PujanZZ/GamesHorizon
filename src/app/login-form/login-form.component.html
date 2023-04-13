@@ -1,7 +1,7 @@
 <div fxLayoutAlign="center" style="padding: 85px">
   <mat-card
     [fxLayout]="'column'"
-    [style.width]="onMobile() ? '70%' : '50%'"
+    [style.width]="onMobile() ? '' : '50%'"
     fxLayoutAlign="center center"
     style="padding: 20px; background-color: #f2f2f2; color: #1a1a1a;"
     class="matcardShadow"
@@ -12,10 +12,11 @@
     <form
       [formGroup]="userForm"
       fxLayout="column"
-      fxLayoutAlign="center center"
-      style="width: 100%"
+      fxLayoutGap="40px"
+      [fxLayoutAlign]="!onMobile() ? '' : ''"
+      style="width: 80%"
     >
-      <div fxLayout="column" style="width: 70%">
+      <div fxLayout="column" [style.width.%]="onMobile() ? '120%' : '80%'">
         <mat-form-field appearance="fill" style="width: 100%">
           <mat-label style="color: #1a1a1a">Email</mat-label>
           <input #emailValue formControlName="email" type="email" matInput style="color: #1a1a1a"/>
@@ -29,7 +30,7 @@
             [type]="hide ? 'password' : 'text'"
             matInput style="color: #1a1a1a; "
           />
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
           <mat-error style="color: #d32f2f">{{getPasswordError()}}</mat-error>

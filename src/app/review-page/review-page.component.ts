@@ -129,24 +129,14 @@ export class ReviewPageComponent {
       })
     });
 
-
-    
-
     const subs2 = this.movieService.getDetailsData(this.slug).pipe(
       map((res: GameDetails) => res),
     ).subscribe(gameRes => {
       this.gameDetails = gameRes
-      console.log(this.gameDetails)
-      //
-
       this.isLoading = true;
     })
 
-
-
-
     this.subs.add(subs2)
-    // this.subs.add(subs5)
     this.subs.add(combinedSubs)
   }
 
@@ -185,6 +175,8 @@ export class ReviewPageComponent {
 
         if (querySnapshot.empty) {
           const docRef = await this.firestore.collection(`${payload.uuid_user}`).doc(this.slug).set(payload);
+
+          this.formGroup.get('review_text')?.markAsTouched();
         } else {
           console.warn('Duplicate document detected, not adding to collection');
           this.reviewError = true;
@@ -197,10 +189,6 @@ export class ReviewPageComponent {
 
     })
     this.subs.add(subs4)
-  }
-
-  onUpdate(): void {
-    this.formGroup.get('review_text')?.enable()
   }
 
   onMobile(): boolean {

@@ -24,6 +24,8 @@ testem.log
 typings/
 .angular/
 
+.firebase/
+
 # e2e
 e2e/*.js
 e2e/*.map
@@ -33,4 +35,5 @@ e2e/*.map
 
 # extra 
 /src/environment.ts
+y
 /src/app/environment.ts
